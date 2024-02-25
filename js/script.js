@@ -1,4 +1,9 @@
 const button = document.querySelector('#startGame')
+
+const inputfps = document.querySelector('#fpsInput')
+const inputballvelocity = document.querySelector('#ballVelocityInput')
+const inputmovevelocity = document.querySelector('#moveVelocityInput')
+
 const score = document.querySelector('#score')
 const canvas = document.querySelector('canvas')
 const ctx = canvas.getContext('2d')
@@ -7,10 +12,10 @@ const ctx = canvas.getContext('2d')
 
 const width_resolution = 548
 const height_resolution = 400
-const paddle_sens = 7
+let paddle_sens = 7
 const paddle_width = 75
-const ball_velocity = 5
-const fps = 100
+let ball_velocity = 5
+let fps = 120
 
 // Canvas settings
 
@@ -279,3 +284,18 @@ function resetGame() {
         }
     }
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+    inputfps.value = fps
+    inputballvelocity.value = ball_velocity
+    inputmovevelocity.value = paddle_sens
+
+    inputballvelocity.addEventListener('change', (e) => {
+        ball_velocity = parseInt(e.target.value)
+    })
+
+    inputmovevelocity.addEventListener('change', (e) => {
+        paddle_sens = parseInt(e.target.value)
+    })
+
+})
